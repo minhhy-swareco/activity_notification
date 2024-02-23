@@ -5,7 +5,6 @@ module ActivityNotification
     include Swagger::NotificationsApi
     # Include CommonApiController to select target and define common methods
     include CommonApiController
-    protect_from_forgery except: [:open_all]
     rescue_from ActivityNotification::NotifiableNotFoundError, with: :render_notifiable_not_found
 
     # Returns notification index of the target.
@@ -28,7 +27,7 @@ module ActivityNotification
     def index
       super
       render json: {
-        count: @notifications.size, 
+        count: @notifications.size,
         notifications: @notifications.as_json(notification_json_options)
       }
     end
@@ -52,7 +51,7 @@ module ActivityNotification
         notifications: @opened_notifications.as_json(notification_json_options)
       }
     end
-  
+
     # Returns a single notification.
     #
     # GET /:target_type/:target_id/notifications/:id
@@ -63,7 +62,7 @@ module ActivityNotification
       super
       render json: notification_json
     end
-  
+
     # Deletes a notification.
     #
     # DELETE /:target_type/:target_id/notifications/:id
@@ -74,7 +73,7 @@ module ActivityNotification
       super
       head 204
     end
-  
+
     # Opens a notification.
     #
     # PUT /:target_type/:target_id/notifications/:id/open
