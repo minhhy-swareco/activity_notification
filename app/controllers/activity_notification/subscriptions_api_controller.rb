@@ -5,7 +5,7 @@ module ActivityNotification
     include Swagger::SubscriptionsApi
     # Include CommonApiController to select target and define common methods
     include CommonApiController
-    protect_from_forgery except: [:create]
+    # protect_from_forgery except: [:create]
     before_action :set_subscription, except: [:index, :create, :find, :optional_target_names]
     before_action ->{ validate_param(:key) }, only: [:find, :optional_target_names]
 
@@ -83,7 +83,7 @@ module ActivityNotification
       super
       render json: subscription_json
     end
-  
+
     # Deletes a subscription.
     #
     # DELETE /:target_type/:target_id/subscriptions/:id
