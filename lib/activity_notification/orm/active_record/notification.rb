@@ -45,7 +45,7 @@ module ActivityNotification
         belongs_to :notifier,      polymorphic: true, optional: true
 
         # Serialize parameters Hash
-        serialize  :parameters, Hash
+        serialize  :parameters, type: Hash
 
         validates  :target,        presence: true
         validates  :notifiable,    presence: true

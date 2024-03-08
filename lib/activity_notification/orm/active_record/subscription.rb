@@ -14,7 +14,7 @@ module ActivityNotification
         belongs_to :target,               polymorphic: true
 
         # Serialize parameters Hash
-        serialize  :optional_targets, Hash
+        serialize  :optional_targets, type: Hash
 
         validates  :target,               presence: true
         validates  :key,                  presence: true, uniqueness: { scope: :target }
